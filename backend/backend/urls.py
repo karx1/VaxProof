@@ -19,5 +19,6 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/csrf-token', views.get_csrf_token, name="get_csrf_token")
+    path('api/csrf-token', views.get_csrf_token, name="get_csrf_token"),
+    path('api/authed', views.is_authed, name="is_authed"),
 ]
