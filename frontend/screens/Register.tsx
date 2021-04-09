@@ -68,6 +68,20 @@ class Register extends React.Component<Props, IState> {
 
         this.setState({ errors: errors }, () => {
             console.log(this.state.errors);
+            if (Object.keys(this.state.errors).length === 0) {
+                const data: FormData = new FormData();
+                for (const [key, value] of Object.entries(this.state)) {
+                    if (key !== "confirm" && key !== "errors") {
+                        data.append(key, value.toString());
+                    }
+                }
+
+                //@ts-ignore
+                for (const key in data) {
+                    //@ts-ignore
+                    console.log(key, data[key]);
+                }
+            }
         })
     }
 
