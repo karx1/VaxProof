@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import DrawerStackParamList from "../types";
 import { API_URL } from "../constants";
 import axios from "axios";
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import { Text } from "react-native-paper";
 import styles from "../styles";
 
 type Props = DrawerScreenProps<DrawerStackParamList, "Home">;
