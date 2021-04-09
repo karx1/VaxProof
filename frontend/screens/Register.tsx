@@ -13,17 +13,36 @@ type Props = {
     token: string;
 }
 
-class Register extends React.Component<Props, any> {
+interface IState {
+    first_name: string;
+    last_name: string;
+    username: string;
+    email: string;
+    password: string;
+    confirm: string;
+    errors: Array<Object>;
+}
+
+class Register extends React.Component<Props, IState> {
+    state = {
+        first_name: "",
+        last_name: "",
+        username: "",
+        email: "",
+        password: "",
+        confirm: "",
+        errors: [],
+    }
+
     onTextChange = (name: string, text: string) => {
         //@ts-ignore
         this.setState({ [name]: text });
     }
 
     onSubmit = async () => {
-        for (const key in this.state) {
-            const value = this.state[key];
-
-            console.log(key, value);
+        const errors = [];
+        for (const [key, value] of Object.entries(this.state)) {
+            
         }
     }
 
