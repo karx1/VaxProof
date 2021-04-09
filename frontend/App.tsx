@@ -1,7 +1,7 @@
 import { createDrawerNavigator, DrawerScreenProps } from '@react-navigation/drawer';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { Appbar, Provider as PaperProvider, Text, Button } from "react-native-paper";
 import { API_URL } from "./constants";
@@ -34,11 +34,15 @@ const Drawer = createDrawerNavigator();
 
 export default function App() {
   const [token, setToken] = React.useState("");
+  const [authed, setAuthed] = useState(false);
 
   useEffect(() => {
     axios.get(`${API_URL}/api/csrf-token?format=json`).then(resp => {
       setToken(resp.data);
-    })
+      axios.get(`${API_URL}/api/authed`).then(resp => {
+        setAuthed(resp.data);
+      });
+    });
   }, []);
 
   return (
@@ -48,7 +52,9 @@ export default function App() {
           header: CustomNavigationBar,
           headerShown: true
         }}>
-          <Drawer.Screen name="Home" component={Home} />
+          <Drawer.Screen name="Home">
+            {(props) => <Home authed={authed} {...props} />}
+          </Drawer.Screen>
           <Drawer.Screen name="Notifications" component={NotificationsScreen} />
         </Drawer.Navigator>
       </NavigationContainer>
