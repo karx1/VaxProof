@@ -20,6 +20,10 @@ const styles = StyleSheet.create({
       marginLeft: 10,
       marginRight: 10,
       flex: 1,
+    },
+    submit: {
+      paddingVertical: 10,
+      marginVertical: 10
     }
 });
 
