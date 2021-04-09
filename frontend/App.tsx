@@ -1,5 +1,5 @@
 import { createDrawerNavigator, DrawerScreenProps } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { View } from 'react-native';
@@ -10,14 +10,12 @@ import Home from "./screens/Home";
 import styles from './styles';
 import DrawerStackParamList from './types';
 
-function CustomNavigationBar({ navigation, previous }: any) {
+function CustomNavigationBar({ scene }: any) {
   return (
-    <Appbar>
-      <Appbar.Header>
-        <Appbar.Content title="VaxProof" />
-        {previous ? <Appbar.BackAction onPress={navigation.goBack} /> : <></>}
-      </Appbar.Header>
-    </Appbar>
+    <Appbar.Header>
+      <Appbar.Content title="VaxProof" />
+      <Appbar.Action icon="menu" onPress={scene.descriptor.navigation.openDrawer} />
+    </Appbar.Header>
   )
 }
 
@@ -47,7 +45,8 @@ export default function App() {
     <PaperProvider>
       <NavigationContainer>
         <Drawer.Navigator initialRouteName="Home" screenOptions={{
-          header: (props) => <CustomNavigationBar {...props} />
+          header: CustomNavigationBar,
+          headerShown: true
         }}>
           <Drawer.Screen name="Home" component={Home} />
           <Drawer.Screen name="Notifications" component={NotificationsScreen} />
