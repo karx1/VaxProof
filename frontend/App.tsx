@@ -6,6 +6,8 @@ import React, { useEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { API_URL } from "./constants";
 
+import Home from "./screens/Home";
+
 const Drawer = createDrawerNavigator();
 
 export default function App() {
@@ -19,25 +21,11 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      {/* <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
-      </Drawer.Navigator> */}
-      <View style={styles.container}>
-        <Text>Hello world!</Text>
-        <Text>The token is: </Text>
-        <Text>{token}</Text>
-      </View>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={Home} />
+        {/* <Drawer.Screen name="Notifications" component={NotificationsScreen} /> */}
+      </Drawer.Navigator>
       <StatusBar />
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
