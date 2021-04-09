@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
     submit: {
       paddingVertical: 10,
       marginVertical: 10
+    },
+    error: {
+      color: "red"
     }
 });
 
