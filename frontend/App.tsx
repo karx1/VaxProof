@@ -43,7 +43,9 @@ export default function App() {
           <Drawer.Screen name="Home">
             {(props) => <Home authed={authed} {...props} />}
           </Drawer.Screen>
-          <Drawer.Screen name="Register" component={Register} />
+          <Drawer.Screen name="Register">
+            {(props) => <Register token={token} {...props} />}
+          </Drawer.Screen>
         </Drawer.Navigator>
       </NavigationContainer>
     </PaperProvider>

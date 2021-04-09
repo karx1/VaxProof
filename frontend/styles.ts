@@ -10,6 +10,16 @@ const styles = StyleSheet.create({
     button: {
       marginLeft: 3,
       marginRight: 3
+    },
+    header: {
+      fontSize: 75,
+      fontWeight: "bold",
+    },
+    input: {
+      width: "75%",
+      marginLeft: 10,
+      marginRight: 10,
+      flex: 1,
     }
 });
 
