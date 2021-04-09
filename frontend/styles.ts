@@ -7,6 +7,10 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    button: {
+      marginLeft: 3,
+      marginRight: 3
+    }
 });
 
 export default styles;

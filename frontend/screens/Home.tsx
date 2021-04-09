@@ -2,10 +2,10 @@ import { DrawerNavigationProp } from "@react-navigation/drawer";
 import React, { useEffect } from "react";
 import DrawerStackParamList from "../types";
 import { BackHandler, View } from "react-native";
-import { Text } from "react-native-paper";
+import { Text, Button } from "react-native-paper";
 import styles from "../styles";
 
-type ProfileScreenNavigationProp = DrawerNavigationProp<DrawerStackParamList,'Home'>;
+type ProfileScreenNavigationProp = DrawerNavigationProp<DrawerStackParamList, 'Home'>;
 
 type Props = {
     navigation: ProfileScreenNavigationProp;
@@ -25,7 +25,24 @@ function Home({ navigation, authed }: Props) {
     return (
         <View style={styles.container}>
             <Text>Hello!</Text>
-            {authed ? <Text>You are authenticated.</Text> : <Text>You are not authenticated.</Text>}
+            {authed ? (
+                <>
+                    The home screen for logged-in users is coming soon.
+                </>
+            )
+                : (
+                    <>
+                        <View style={{ flexDirection: "row" }}>
+                            <Button style={styles.button} mode="outlined" icon="login-variant">
+                                Sign In
+                            </Button>
+                            <Text>{"\t"}</Text>
+                            <Button style={styles.button} mode="outlined" icon="account-plus">
+                                Sign Up
+                            </Button>
+                        </View>
+                    </>
+                )}
         </View>
     )
 }
