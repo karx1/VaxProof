@@ -1,14 +1,12 @@
-import { createDrawerNavigator, DrawerScreenProps } from '@react-navigation/drawer';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
-import { Appbar, Provider as PaperProvider, Text, Button } from "react-native-paper";
+import { Appbar, Provider as PaperProvider } from "react-native-paper";
 import { API_URL } from "./constants";
 
 import Home from "./screens/Home";
-import styles from './styles';
-import DrawerStackParamList from './types';
+import Register from './screens/Register';
 
 function CustomNavigationBar({ scene }: any) {
   return (
@@ -19,16 +17,6 @@ function CustomNavigationBar({ scene }: any) {
   )
 }
 
-type Props = DrawerScreenProps<DrawerStackParamList, "Notifications">;
-
-function NotificationsScreen({ navigation }: Props) {
-  return (
-    <View style={styles.container}>
-      <Text>Home Screen</Text>
-      <Button mode="contained" onPress={() => navigation.navigate('Home')}>Go back home</Button>
-    </View>
-  );
-}
 
 const Drawer = createDrawerNavigator();
 
@@ -55,7 +43,7 @@ export default function App() {
           <Drawer.Screen name="Home">
             {(props) => <Home authed={authed} {...props} />}
           </Drawer.Screen>
-          <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+          <Drawer.Screen name="Register" component={Register} />
         </Drawer.Navigator>
       </NavigationContainer>
     </PaperProvider>

@@ -37,7 +37,7 @@ function Home({ navigation, authed }: Props) {
                                 Sign In
                             </Button>
                             <Text>{"\t"}</Text>
-                            <Button style={styles.button} mode="outlined" icon="account-plus">
+                            <Button style={styles.button} mode="outlined" icon="account-plus" onPress={() => navigation.navigate("Register")} >
                                 Sign Up
                             </Button>
                         </View>
