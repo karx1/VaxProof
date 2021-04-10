@@ -14,10 +14,19 @@ def register(request):
     post = {k:v for k, v in request.POST.items()}
     print(post)
 
-
+    errors = {}
     if User.objects.filter(email=post["email"]).first():
-        return Response({"detail": "A user with that email already exists!", "field": "email", "status": 409})
-    elif User.objects.filter(username=post["username"]).first():
-        return Response({"detail": "A user with that username already exists!", "field": "username", "status": 409})
+        # return Response({"detail": "A user with that email already exists!", "field": "email", "status": 409})
+        errors["email"] = []
+        errors["email"].append("A user with that email already exists!")
+        errors["status"] = 409
+    if User.objects.filter(username=post["username"]).first():
+        errors["username"] = []
+        errors["username"].append("A user with that username already exists!")
+        errors["status"] = 409
+    
+    if errors:
+        return Response(errors)
+
 
     return Response({"detail": "yes", "status": 201})
