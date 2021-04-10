@@ -33,7 +33,7 @@ function Home({ navigation, authed }: Props) {
                 : (
                     <>
                         <View style={{ flexDirection: "row" }}>
-                            <Button style={styles.button} mode="outlined" icon="login-variant">
+                            <Button style={styles.button} mode="outlined" icon="login-variant" onPress={() => navigation.navigate("Login")} >
                                 Sign In
                             </Button>
                             <Text>{"\t"}</Text>

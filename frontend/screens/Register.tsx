@@ -8,10 +8,10 @@ import styles from "../styles";
 import DrawerStackParamList from "../types";
 import { API_URL } from "../constants";
 
-type ProfileScreenNavigationProp = DrawerNavigationProp<DrawerStackParamList, "Register">;
+type RegisterScreenNavigationProp = DrawerNavigationProp<DrawerStackParamList, "Register">;
 
 type Props = {
-    navigation: ProfileScreenNavigationProp;
+    navigation: RegisterScreenNavigationProp;
     token: string;
 }
 
@@ -148,7 +148,7 @@ class Register extends React.Component<Props, IState> {
                             detail,
                             "Please log in.",
                             [   
-                                { text: "OK", onPress: () => {this.props.navigation.navigate("Home")}}
+                                { text: "OK", onPress: () => {this.props.navigation.navigate("Login")}}
                             ]
                         );
                     }
