@@ -1,10 +1,12 @@
 import { DrawerNavigationProp } from "@react-navigation/drawer";
+import axios, { AxiosRequestConfig } from "axios";
 import React from "react";
 import { KeyboardAvoidingView, Platform, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Button, Text, TextInput } from "react-native-paper";
 import styles from "../styles";
 import DrawerStackParamList from "../types";
+import { API_URL } from "../constants";
 
 type ProfileScreenNavigationProp = DrawerNavigationProp<DrawerStackParamList, "Register">;
 
@@ -106,6 +108,19 @@ class Register extends React.Component<Props, IState> {
                     //@ts-ignore
                     console.log(key, data[key]);
                 }
+
+                const config: AxiosRequestConfig = {
+                    method: "POST",
+                    data: data,
+                    url: `${API_URL}/api/users/register/`,
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    }
+                }
+
+                axios(config).then(resp => {
+                    console.log(resp);
+                });
             }
         })
     }
