@@ -116,27 +116,27 @@ class Register extends React.Component<Props, IState> {
                 <KeyboardAvoidingView style={styles.container}>
                     <Text style={styles.header}>Register</Text>
                     <View style={styles.input}>
-                        <TextInput label="First Name" onChangeText={(text: string) => this.onTextChange("first_name", text)} mode="outlined" />
+                        <TextInput label="First Name" onChangeText={(text: string) => this.onTextChange("first_name", text)} mode="outlined" error={"first_name" in this.state.errors} autoCompleteType="name" />
                         {/* 
                         //@ts-ignore */}
                         {"first_name" in this.state.errors && this.state.errors["first_name"].map((errorMessage: string, index: Number) => <Text key={index} style={styles.error} >{errorMessage}</Text>)}
-                        <TextInput label="Last Name" onChangeText={(text: string) => this.onTextChange("last_name", text)} mode="outlined" />
+                        <TextInput label="Last Name" onChangeText={(text: string) => this.onTextChange("last_name", text)} mode="outlined" error={"last_name" in this.state.errors} autoCompleteType="name" />
                         {/* 
                         //@ts-ignore */}
                         {"last_name" in this.state.errors && this.state.errors["last_name"].map((errorMessage: string, index: Number) => <Text key={index} style={styles.error} >{errorMessage}</Text>)}
-                        <TextInput label="Username" onChangeText={(text: string) => this.onTextChange("username", text)} mode="outlined" />
+                        <TextInput label="Username" onChangeText={(text: string) => this.onTextChange("username", text)} mode="outlined" error={"username" in this.state.errors} autoCapitalize="none" autoCompleteType="username" />
                         {/* 
                         //@ts-ignore */}
                         {"username" in this.state.errors && this.state.errors["username"].map((errorMessage: string, index: Number) => <Text key={index} style={styles.error} >{errorMessage}</Text>)}
-                        <TextInput label="Email" onChangeText={(text: string) => this.onTextChange("email", text)} mode="outlined" />
+                        <TextInput label="Email" onChangeText={(text: string) => this.onTextChange("email", text)} mode="outlined" error={"email" in this.state.errors} autoCapitalize="none" autoCompleteType="email" keyboardType="email-address" />
                         {/* 
                         //@ts-ignore */}
                         {"email" in this.state.errors && this.state.errors["email"].map((errorMessage: string, index: Number) => <Text key={index} style={styles.error} >{errorMessage}</Text>)}
-                        <TextInput label="Password" onChangeText={(text: string) => this.onTextChange("password", text)} mode="outlined" />
+                        <TextInput label="Password" onChangeText={(text: string) => this.onTextChange("password", text)} mode="outlined" error={"password" in this.state.errors} autoCapitalize="none" autoCompleteType="password" secureTextEntry={true} />
                         {/* 
                         //@ts-ignore */}
                         {"password" in this.state.errors && this.state.errors["password"].map((errorMessage: string, index: Number) => <Text key={index} style={styles.error} >{errorMessage}</Text>)}
-                        <TextInput label="Confirm Password" onChangeText={(text: string) => this.onTextChange("confirm", text)} mode="outlined" />
+                        <TextInput label="Confirm Password" onChangeText={(text: string) => this.onTextChange("confirm", text)} mode="outlined" error={"confirm" in this.state.errors} autoCapitalize="none" autoCompleteType="password" secureTextEntry={true} />
                         {/* 
                         //@ts-ignore */}
                         {"confirm" in this.state.errors && this.state.errors["confirm"].map((errorMessage: string, index: Number) => <Text key={index} style={styles.error} >{errorMessage}</Text>)}
