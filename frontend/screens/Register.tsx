@@ -66,6 +66,31 @@ class Register extends React.Component<Props, IState> {
             errors["confirm"].push("Both passwords must match each other.");
         }
 
+        const passwordRegex = /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "@^\*\(\)]).*$/;
+
+        if (!passwordRegex.test(this.state.password)) {
+            //@ts-ignore
+            if (!("password" in errors)) errors["password"] = [];
+            //@ts-ignore
+            errors["password"].push("Not a valid password.");
+        }
+
+        if (!passwordRegex.test(this.state.confirm)) {
+            //@ts-ignore
+            if (!("confirm" in errors)) errors["confirm"] = [];
+            //@ts-ignore
+            errors["confirm"].push("Not a valid password.");
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(this.state.email)) {
+            //@ts-ignore
+            if (!("email" in errors)) errors["email"] = [];
+            //@ts-ignore
+            errors["email"].push("Not a valid email.");
+        }
+
         this.setState({ errors: errors }, () => {
             console.log(this.state.errors);
             if (Object.keys(this.state.errors).length === 0) {
