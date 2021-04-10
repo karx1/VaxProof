@@ -1,7 +1,7 @@
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import axios, { AxiosRequestConfig } from "axios";
 import React from "react";
-import { KeyboardAvoidingView, Platform, View } from "react-native";
+import { Alert, KeyboardAvoidingView, Platform, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Button, Text, TextInput } from "react-native-paper";
 import styles from "../styles";
@@ -27,6 +27,12 @@ interface IState {
     password: string;
     confirm: string;
     errors: Object;
+}
+
+function assert(condition: boolean, message: string | undefined) {
+    if (!condition) {
+        throw new Error(message || "Assertion failed.");
+    }
 }
 
 class Register extends React.Component<Props, IState> {
@@ -131,6 +137,20 @@ class Register extends React.Component<Props, IState> {
                         }
 
                         this.setState({ errors: errors }, () => console.log(this.state.errors));
+                    } else {
+                        const { detail, status } = data;
+
+                        assert(status == 201, "Status was not 201!");
+
+                        console.log(detail);
+
+                        Alert.alert(
+                            detail,
+                            "Please log in.",
+                            [   
+                                { text: "OK", onPress: () => {this.props.navigation.navigate("Home")}}
+                            ]
+                        );
                     }
                     
                 });

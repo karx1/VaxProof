@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import get_user_model
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
@@ -27,6 +27,9 @@ def register(request):
     
     if errors:
         return Response(errors)
+    else:
+        User.objects.create_user(**post)
+        user = get_object_or_404(User, username=post["username"])
+        print(user)
 
-
-    return Response({"detail": "yes", "status": 201})
+        return Response({"detail": "User created", "status": 201})
