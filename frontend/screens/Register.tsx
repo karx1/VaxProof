@@ -119,7 +119,19 @@ class Register extends React.Component<Props, IState> {
                 }
 
                 axios(config).then(resp => {
-                    console.log(resp);
+                    const { data } = resp;
+
+                    if (data.status === 409) {
+                        const { field, detail } = data;
+
+                        const errors = {};
+                        //@ts-ignore
+                        errors[field] = [];
+                        //@ts-ignore
+                        errors[field].push(detail);
+                        this.setState({ errors: errors }, () => {console.log(this.state.errors)});
+                    }
+                    
                 });
             }
         })
