@@ -14,6 +14,7 @@ type LoginScreenNavigationProp = DrawerNavigationProp<DrawerStackParamList, "Log
 type Props = {
     navigation: LoginScreenNavigationProp;
     token: string;
+    onLogin: Function;
 }
 
 interface IState {
@@ -98,7 +99,8 @@ class Login extends React.Component<Props, IState> {
 
                         console.log(detail);
 
-                        this.props.navigation.navigate("Home");
+                        this.props.onLogin();
+                        this.props.navigation.navigate('Home');
                     }
                 })
             }
