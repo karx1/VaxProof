@@ -19,6 +19,10 @@ function CustomNavigationBar({ scene }: any) {
   )
 }
 
+async function getAuthed(callback: Function) {
+  const resp = await axios.get(`${API_URL}/api/authed`);
+  callback(resp.data);
+}
 
 const Drawer = createDrawerNavigator();
 
@@ -29,8 +33,8 @@ export default function App() {
   useEffect(() => {
     axios.get(`${API_URL}/api/csrf-token?format=json`).then(resp => {
       setToken(resp.data);
-      axios.get(`${API_URL}/api/authed`).then(resp => {
-        setAuthed(resp.data);
+      getAuthed((authed: boolean) => {
+        setAuthed(authed);
       });
     });
   }, []);
@@ -48,7 +52,7 @@ export default function App() {
           {!authed ?
             <>
               <Drawer.Screen name="Login">
-                {(props) => <Login token={token} {...props} />}
+                {(props) => <Login token={token} onLogin={() => getAuthed((authed: boolean) => setAuthed(authed))} {...props} />}
               </Drawer.Screen>
               <Drawer.Screen name="Register">
                 {(props) => <Register token={token} {...props} />}
