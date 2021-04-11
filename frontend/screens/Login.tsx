@@ -1,5 +1,5 @@
 import { DrawerNavigationProp } from "@react-navigation/drawer";
-import { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import React, { Key } from "react";
 import { KeyboardAvoidingView, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
@@ -76,6 +76,23 @@ class Login extends React.Component<Props, IState> {
                         "Content-Type": "multipart/form-data"
                     }
                 };
+
+                axios(config).then(resp => {
+                    const { data } = resp;
+                    
+                    if (data.status === 400) {
+                        const errors: { [key: string]: Array<string> } = {};
+                        for (const [key, value] of Object.entries(data)) {
+                            if (key !== "status") {
+                                if (!(key in errors)) errors[key] = [];
+                                //@ts-ignore
+                                errors[key].push(value);
+                            }
+                        }
+
+                        this.setState({ errors: errors });
+                    }
+                })
             }
         });
     }
