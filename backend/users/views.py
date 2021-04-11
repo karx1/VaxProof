@@ -33,3 +33,14 @@ def register(request):
         print(user)
 
         return Response({"detail": "User created", "status": 201})
+
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def login_view(request):
+    post = {k:v for k, v in request.POST.items()}
+    
+    if not User.objects.filter(username=post["username"]).first():
+        return Response({"username": "That user does not exist!", "status": 400})
+
+    return Response({"detail": "yes", "status": 200})
