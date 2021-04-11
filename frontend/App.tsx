@@ -60,7 +60,9 @@ export default function App() {
             </>
             : 
             <>
-              <Drawer.Screen name="Logout" component={Logout} />
+              <Drawer.Screen name="Logout">
+                {(props) => <Logout onLogout={() => getAuthed((authed: boolean) => setAuthed(authed))} {...props} />}
+              </Drawer.Screen>
             </>}
         </Drawer.Navigator>
       </NavigationContainer>
