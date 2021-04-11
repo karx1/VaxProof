@@ -7,7 +7,7 @@ import { Text, TextInput, Button } from "react-native-paper";
 import { API_URL } from "../constants";
 import styles from "../styles";
 import DrawerStackParamList from "../types";
-import { isBlank } from "../utils";
+import { assert, isBlank } from "../utils";
 
 type LoginScreenNavigationProp = DrawerNavigationProp<DrawerStackParamList, "Login">;
 
@@ -91,6 +91,14 @@ class Login extends React.Component<Props, IState> {
                         }
 
                         this.setState({ errors: errors });
+                    } else {
+                        const { detail, status } = data;
+
+                        assert(status === 200, "Status was not 200!");
+
+                        console.log(detail);
+
+                        this.props.navigation.navigate("Home");
                     }
                 })
             }
