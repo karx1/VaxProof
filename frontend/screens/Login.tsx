@@ -1,8 +1,10 @@
 import { DrawerNavigationProp } from "@react-navigation/drawer";
+import { AxiosRequestConfig } from "axios";
 import React, { Key } from "react";
 import { KeyboardAvoidingView, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Text, TextInput, Button } from "react-native-paper";
+import { API_URL } from "../constants";
 import styles from "../styles";
 import DrawerStackParamList from "../types";
 import { isBlank } from "../utils";
@@ -42,7 +44,40 @@ class Login extends React.Component<Props, IState> {
             }
         }
 
-        this.setState({ errors: errors }, () => {console.log(this.state.errors)});
+        const regex = /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "@^\*\(\)]).*$/;
+
+        if (!regex.test(this.state.password)) {
+            if (!("password" in errors)) errors["password"] = [];
+            errors["password"].push("Not a valid password.");
+        }
+
+        this.setState({ errors: errors }, () => {
+            console.log(this.state.errors);
+            if (Object.keys(this.state.errors).length === 0) {
+                const data: FormData = new FormData();
+
+                for (const [key, value] of Object.entries(this.state)) {
+                    if (key !== "errors") {
+                        data.append(key, value.toString());
+                    }
+                }
+
+                //@ts-ignore
+                for (const key in data) {
+                    //@ts-ignore
+                    console.log(key, data[key]);
+                }
+
+                const config: AxiosRequestConfig = {
+                    method: "POST",
+                    data: data,
+                    url: `${API_URL}/api/users/login/`,
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    }
+                };
+            }
+        });
     }
 
     render() {
