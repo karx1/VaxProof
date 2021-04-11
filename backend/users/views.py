@@ -1,8 +1,8 @@
 from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404, render
-from django.contrib.auth import authenticate, get_user_model, login
+from django.contrib.auth import authenticate, get_user_model, login, logout
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 User = get_user_model()
@@ -50,3 +50,10 @@ def login_view(request):
         else:
             login(request, user)
             return Response({"detail": "Login successful", "status": 200})
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def logout_view(request):
+    logout(request)
+
+    return Response({"detail": "Logged out successfully.", "status": 200})
