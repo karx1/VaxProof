@@ -27,7 +27,7 @@ function Home({ navigation, authed }: Props) {
             <Text>Hello!</Text>
             {authed ? (
                 <>
-                    The home screen for logged-in users is coming soon.
+                    <Text>The home screen for logged-in users is coming soon.</Text>
                 </>
             )
                 : (
