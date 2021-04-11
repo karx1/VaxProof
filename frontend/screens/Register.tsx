@@ -7,16 +7,13 @@ import { Button, Text, TextInput } from "react-native-paper";
 import styles from "../styles";
 import DrawerStackParamList from "../types";
 import { API_URL } from "../constants";
+import { isBlank, assert } from "../utils";
 
-type ProfileScreenNavigationProp = DrawerNavigationProp<DrawerStackParamList, "Register">;
+type RegisterScreenNavigationProp = DrawerNavigationProp<DrawerStackParamList, "Register">;
 
 type Props = {
-    navigation: ProfileScreenNavigationProp;
+    navigation: RegisterScreenNavigationProp;
     token: string;
-}
-
-function isBlank(str: string) {
-    return (!str || /^\s*$/.test(str));
 }
 
 interface IState {
@@ -27,12 +24,6 @@ interface IState {
     password: string;
     confirm: string;
     errors: Object;
-}
-
-function assert(condition: boolean, message: string | undefined) {
-    if (!condition) {
-        throw new Error(message || "Assertion failed.");
-    }
 }
 
 class Register extends React.Component<Props, IState> {
@@ -148,7 +139,7 @@ class Register extends React.Component<Props, IState> {
                             detail,
                             "Please log in.",
                             [   
-                                { text: "OK", onPress: () => {this.props.navigation.navigate("Home")}}
+                                { text: "OK", onPress: () => {this.props.navigation.navigate("Login")}}
                             ]
                         );
                     }

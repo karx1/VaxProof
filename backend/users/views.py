@@ -1,5 +1,6 @@
+from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404, render
-from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, get_user_model, login
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -33,3 +34,19 @@ def register(request):
         print(user)
 
         return Response({"detail": "User created", "status": 201})
+
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def login_view(request):
+    post = {k:v for k, v in request.POST.items()}
+    
+    if not User.objects.filter(username=post["username"]).first():
+        return Response({"username": "That user does not exist!", "status": 400})
+    else:
+        user = authenticate(username=post["username"], password=post["password"])
+        if user is None:
+            return JsonResponse({"password": "The password you entered is incorrect.", "status": 400})
+        else:
+            login(request, user)
+            return Response({"detail": "Login successful", "status": 200})

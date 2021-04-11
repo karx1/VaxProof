@@ -7,6 +7,7 @@ import { API_URL } from "./constants";
 
 import Home from "./screens/Home";
 import Register from './screens/Register';
+import Login from "./screens/Login";
 
 function CustomNavigationBar({ scene }: any) {
   return (
@@ -42,6 +43,9 @@ export default function App() {
         }}>
           <Drawer.Screen name="Home">
             {(props) => <Home authed={authed} {...props} />}
+          </Drawer.Screen>
+          <Drawer.Screen name="Login">
+            {(props) => <Login token={token} {...props} />}
           </Drawer.Screen>
           <Drawer.Screen name="Register">
             {(props) => <Register token={token} {...props} />}

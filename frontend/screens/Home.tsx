@@ -27,13 +27,13 @@ function Home({ navigation, authed }: Props) {
             <Text>Hello!</Text>
             {authed ? (
                 <>
-                    The home screen for logged-in users is coming soon.
+                    <Text>The home screen for logged-in users is coming soon.</Text>
                 </>
             )
                 : (
                     <>
                         <View style={{ flexDirection: "row" }}>
-                            <Button style={styles.button} mode="outlined" icon="login-variant">
+                            <Button style={styles.button} mode="outlined" icon="login-variant" onPress={() => navigation.navigate("Login")} >
                                 Sign In
                             </Button>
                             <Text>{"\t"}</Text>
