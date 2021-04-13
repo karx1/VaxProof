@@ -1110,10 +1110,10 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
-"@expo/config-plugins@1.0.24":
-  version "1.0.24"
-  resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-1.0.24.tgz#d04353500ca4ce6f6eb5f7058ac63e6f09e43486"
-  integrity sha512-DB4CgkeZEKG2DWC0GzbLSHuWlxWZ6d3wE95Cjy6DOyR60cFyxo+1eriaxLaBCApX3KrFAdxJFsxvwK9zbCtuzQ==
+"@expo/config-plugins@1.0.25":
+  version "1.0.25"
+  resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-1.0.25.tgz#a9dc4a00a49d8360b5ce85ea262d3a60fb4d00f0"
+  integrity sha512-iRoBWnkMsGxrSxfXUXWpVfxpGjTUipI60+w9vO/QdXH02wFrS4k/jcZ4OSlPJMxpU/Lv5kgvgjvcJ22/SJpRow==
   dependencies:
     "@expo/config-types" "^40.0.0-beta.2"
     "@expo/configure-splash-screen" "0.3.4"
@@ -1136,15 +1136,15 @@
   integrity sha512-t9pHCQMXOP4nwd7LGXuHkLlFy0JdfknRSCAeVF4Kw2/y+5OBbR9hW9ZVnetpBf0kORrekgiI7K/qDaa3hh5+Qg==
 
 "@expo/config@^3.3.18":
-  version "3.3.34"
-  resolved "https://registry.yarnpkg.com/@expo/config/-/config-3.3.34.tgz#ab8cab4c04a406cc92ed483f7a7f071e8e0f3e98"
-  integrity sha512-Yekmn9sIm70vGUwugXlL/jpTQufTJXV7IrYWvFKd4B8ZwdMBFK08NY2XBwvl+jJOVdhmLe+yHc44bCmrEPb6vA==
+  version "3.3.35"
+  resolved "https://registry.yarnpkg.com/@expo/config/-/config-3.3.35.tgz#cc69703b9275fe6d6ef70ce6dcd217fa84d50807"
+  integrity sha512-0jYSYBCge8s9TqvUbky64lWvpdAHKB9V+e4OrKOmxF8MILmBq2fYHiHkywn5VU7OaWiJQJixhrNUEBHWLJm4ig==
   dependencies:
     "@babel/core" "7.9.0"
     "@babel/plugin-proposal-class-properties" "~7.12.13"
     "@babel/preset-env" "~7.12.13"
     "@babel/preset-typescript" "~7.12.13"
-    "@expo/config-plugins" "1.0.24"
+    "@expo/config-plugins" "1.0.25"
     "@expo/config-types" "^40.0.0-beta.2"
     "@expo/json-file" "8.2.28"
     fs-extra "9.0.0"
@@ -2330,15 +2330,15 @@ braces@^2.3.1:
     to-regex "^3.0.1"
 
 browserslist@^4.14.5, browserslist@^4.16.3:
-  version "4.16.3"
-  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.16.3.tgz#340aa46940d7db878748567c5dea24a48ddf3717"
-  integrity sha512-vIyhWmIkULaq04Gt93txdh+j02yX/JzlyhLYbV3YQCn/zvES3JnY7TifHHvvr1w5hTDluNKMkV05cs4vy8Q7sw==
+  version "4.16.4"
+  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.16.4.tgz#7ebf913487f40caf4637b892b268069951c35d58"
+  integrity sha512-d7rCxYV8I9kj41RH8UKYnvDYCRENUlHRgyXy/Rhr/1BaeLGfiCptEdFE8MIrvGfWbBFNjVYx76SQWvNX1j+/cQ==
   dependencies:
-    caniuse-lite "^1.0.30001181"
-    colorette "^1.2.1"
-    electron-to-chromium "^1.3.649"
+    caniuse-lite "^1.0.30001208"
+    colorette "^1.2.2"
+    electron-to-chromium "^1.3.712"
     escalade "^3.1.1"
-    node-releases "^1.1.70"
+    node-releases "^1.1.71"
 
 bser@2.1.1:
   version "2.1.1"
@@ -2445,7 +2445,7 @@ camelcase@^5.0.0, camelcase@^5.3.1:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.3.1.tgz#e3c9b31569e106811df242f715725a1f4c494320"
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
-caniuse-lite@^1.0.30001181:
+caniuse-lite@^1.0.30001208:
   version "1.0.30001208"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001208.tgz#a999014a35cebd4f98c405930a057a0d75352eb9"
   integrity sha512-OE5UE4+nBOro8Dyvv0lfx+SRtfVIOM9uhKqFmJeUbGriqhhStgp1A0OyBpgy3OUF8AhYCT+PVwPC1gMl2ZcQMA==
@@ -2595,7 +2595,7 @@ color@^3.1.2, color@^3.1.3:
     color-convert "^1.9.1"
     color-string "^1.5.4"
 
-colorette@^1.0.7, colorette@^1.2.1:
+colorette@^1.0.7, colorette@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.2.2.tgz#cbcc79d5e99caea2dbf10eb3a26fd8b3e6acfa94"
   integrity sha512-MKGMzyfeuutC/ZJ1cba9NqcNpfeqMUcYmyF1ZFY6/Cn7CNSAKx6a+s48sqLqyAiZuaP2TcqMhoo+dlwFnVxT9w==
@@ -2899,10 +2899,10 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
-electron-to-chromium@^1.3.649:
-  version "1.3.711"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.711.tgz#92c3caf7ffed5e18bf63f66b4b57b4db2409c450"
-  integrity sha512-XbklBVCDiUeho0PZQCjC25Ha6uBwqqJeyDhPLwLwfWRAo4x+FZFsmu1pPPkXT+B4MQMQoQULfyaMltDopfeiHQ==
+electron-to-chromium@^1.3.712:
+  version "1.3.714"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.714.tgz#dabe0b67bd9463bcef5d25fe141daf8de7f93ea3"
+  integrity sha512-/xC2dSRZTzpPuKF/v+YZSYSkS0ZzktGrqou/ldu3MovPdEuLBzU/QUfEAc1as/M/KMbM5HZFQDs7/edNmSOpNA==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -4861,7 +4861,7 @@ node-modules-regexp@^1.0.0:
   resolved "https://registry.yarnpkg.com/node-modules-regexp/-/node-modules-regexp-1.0.0.tgz#8d9dbe28964a4ac5712e9131642107c71e90ec40"
   integrity sha1-jZ2+KJZKSsVxLpExZCEHxx6Q7EA=
 
-node-releases@^1.1.70:
+node-releases@^1.1.71:
   version "1.1.71"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.71.tgz#cb1334b179896b1c89ecfdd4b725fb7bbdfc7dbb"
   integrity sha512-zR6HoT6LrLCRBwukmrVbHv0EpEQjksO6GmFcZQQuCAy139BEsoVKPYnf3jongYW83fAa1torLGYwxxky/p28sg==
@@ -5355,9 +5355,9 @@ range-parser@~1.2.1:
   integrity sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==
 
 react-devtools-core@^4.6.0:
-  version "4.10.1"
-  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.10.1.tgz#6d57db291aeac9cc45ef9fb4636dd2ab97490daf"
-  integrity sha512-sXbBjGAWcf9HAblTP/zMtFhGHqxAfIR+GPxONZsSGN9FHnF4635dx1s2LdQWG9rJ+Ehr3nWg+BUAB6P78my5PA==
+  version "4.12.0"
+  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.12.0.tgz#02fa1a3d58b2748ce5a0a3213f4417e7a4960354"
+  integrity sha512-MN7zE3UpccJQLs+tTKGoM1GQFZLJki4PhT4Us0JJgn6MK1m5ZOQnmJZy+cp21LqUBFPXxqmpqeu65/gTRbxK5Q==
   dependencies:
     shell-quote "^1.6.1"
     ws "^7"
@@ -5412,11 +5412,6 @@ react-native-reanimated@~1.13.0:
   integrity sha512-i714H24dv6ncpFO7/SZ0PfAMbvjgVbF8Ow2NPtowoZAz8osS54DmTMrkgJ9Za+uEku/s0AEaxqiXG2Xgntvv2g==
   dependencies:
     fbjs "^1.0.0"
-
-react-native-restart@^0.0.22:
-  version "0.0.22"
-  resolved "https://registry.yarnpkg.com/react-native-restart/-/react-native-restart-0.0.22.tgz#81fcb7f31e35951d85410c68b9556acf3ab88705"
-  integrity sha512-XwCqAMAKsO8yCM3xACPFKvkDQZe41lcavOuO0gUEu803IuTLtciualCq/qs83ryRDCDh1jkXYRqFjsGjLMCN3Q==
 
 react-native-safe-area-context@3.1.9:
   version "3.1.9"
@@ -6243,9 +6238,9 @@ typescript@~4.0.0:
   integrity sha512-yi7M4y74SWvYbnazbn8/bmJmX4Zlej39ZOqwG/8dut/MYoSQ119GY9ZFbbGsD4PFZYWxqik/XsP3vk3+W5H3og==
 
 ua-parser-js@^0.7.18:
-  version "0.7.27"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.27.tgz#b54f8ce9eb6c7abf3584edeaf9a3d8b3bd92edba"
-  integrity sha512-eXMaRYK2skomGocoX0x9sBXzx5A1ZVQgXfrW4mTc8dT0zS7olEcyfudAzRC5tIIRgLxQ69B6jut3DI+n5hslPA==
+  version "0.7.28"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
+  integrity sha512-6Gurc1n//gjp9eQNXjD9O3M/sMwVtN5S8Lv9bvOYBfKfDNiIIhqiyi01vMBO45u4zkDE420w/e0se7Vs+sIg+g==
 
 uglify-es@^3.1.9:
   version "3.3.9"
