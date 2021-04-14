@@ -23,7 +23,7 @@ interface IState {
     email: string;
     password: string;
     confirm: string;
-    errors: Object;
+    errors: { [key: string]: Array<string> };
 }
 
 class Register extends React.Component<Props, IState> {
@@ -43,7 +43,7 @@ class Register extends React.Component<Props, IState> {
     }
 
     onSubmit = async () => {
-        const errors = {};
+        const errors: { [key: string]: Array<string> } = {};
         for (const [key, value] of Object.entries(this.state)) {
             if (isBlank(value.toString())) {
                 //@ts-ignore
@@ -54,39 +54,29 @@ class Register extends React.Component<Props, IState> {
         }
 
         if (this.state.password !== this.state.confirm) {
-            //@ts-ignore
             if (!("password" in errors)) errors["password"] = [];
-            //@ts-ignore
             errors["password"].push("Both passwords must match each other.");
 
-            //@ts-ignore
             if (!("confirm" in errors)) errors["confirm"] = [];
-            //@ts-ignore
             errors["confirm"].push("Both passwords must match each other.");
         }
 
         const passwordRegex = /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "@^\*\(\)]).*$/;
 
         if (!passwordRegex.test(this.state.password)) {
-            //@ts-ignore
             if (!("password" in errors)) errors["password"] = [];
-            //@ts-ignore
             errors["password"].push("Not a valid password.");
         }
 
         if (!passwordRegex.test(this.state.confirm)) {
-            //@ts-ignore
             if (!("confirm" in errors)) errors["confirm"] = [];
-            //@ts-ignore
             errors["confirm"].push("Not a valid password.");
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailRegex.test(this.state.email)) {
-            //@ts-ignore
             if (!("email" in errors)) errors["email"] = [];
-            //@ts-ignore
             errors["email"].push("Not a valid email.");
         }
 
@@ -116,9 +106,11 @@ class Register extends React.Component<Props, IState> {
                 }
 
                 axios(config).then(resp => {
-                    const { data } = resp;
+                    
 
-                    const errors = {};
+                    const { data } = resp.data;
+
+                    const errors: { [key: string]: Array<string> } = {};
                     if (data.status === 409) {
                         for (const [key, value] of Object.entries(data)) {
                             if (key !== "status") {
