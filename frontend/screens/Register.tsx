@@ -6,8 +6,8 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Button, Text, TextInput } from "react-native-paper";
 import styles from "../styles";
 import DrawerStackParamList from "../types";
-import { API_URL } from "../constants";
 import { isBlank, assert } from "../utils";
+import { api_url } from "../config.json";
 
 type RegisterScreenNavigationProp = DrawerNavigationProp<DrawerStackParamList, "Register">;
 
@@ -109,7 +109,7 @@ class Register extends React.Component<Props, IState> {
                 const config: AxiosRequestConfig = {
                     method: "POST",
                     data: data,
-                    url: `${API_URL}/api/users/register/`,
+                    url: `${api_url}/api/users/register/`,
                     headers: {
                         "Content-Type": "multipart/form-data"
                     }

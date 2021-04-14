@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Appbar, Provider as PaperProvider } from "react-native-paper";
-import { API_URL } from "./constants";
+import { api_url } from "./config.json";
 
 import Home from "./screens/Home";
 import Register from './screens/Register';
@@ -20,7 +20,7 @@ function CustomNavigationBar({ scene }: any) {
 }
 
 async function getAuthed(callback: Function) {
-  const resp = await axios.get(`${API_URL}/api/authed`);
+  const resp = await axios.get(`${api_url}/api/authed`);
   callback(resp.data);
 }
 
@@ -31,7 +31,7 @@ export default function App() {
   const [authed, setAuthed] = useState(false);
 
   useEffect(() => {
-    axios.get(`${API_URL}/api/csrf-token?format=json`).then(resp => {
+    axios.get(`${api_url}/api/csrf-token?format=json`).then(resp => {
       setToken(resp.data);
       getAuthed((authed: boolean) => {
         setAuthed(authed);

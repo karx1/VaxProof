@@ -5,7 +5,7 @@ import { View } from "react-native";
 import styles from "../styles";
 import { Text, Button } from "react-native-paper";
 import axios from "axios";
-import { API_URL } from "../constants";
+import { api_url } from "../config.json";
 
 type LoginScreenNavigationProp = DrawerNavigationProp<DrawerStackParamList, "Logout">;
 
@@ -17,7 +17,7 @@ type Props = {
 function Logout(props: Props) {
 
     const handleClick = async () => {
-        await axios.get(`${API_URL}/api/users/logout`);
+        await axios.get(`${api_url}/api/users/logout`);
 
         props.onLogout();
         props.navigation.navigate('Home');

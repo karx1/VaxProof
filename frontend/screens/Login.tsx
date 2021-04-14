@@ -4,10 +4,10 @@ import React, { Key } from "react";
 import { KeyboardAvoidingView, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Text, TextInput, Button } from "react-native-paper";
-import { API_URL } from "../constants";
 import styles from "../styles";
 import DrawerStackParamList from "../types";
 import { assert, isBlank } from "../utils";
+import { api_url } from "../config.json";
 
 type LoginScreenNavigationProp = DrawerNavigationProp<DrawerStackParamList, "Login">;
 
@@ -72,7 +72,7 @@ class Login extends React.Component<Props, IState> {
                 const config: AxiosRequestConfig = {
                     method: "POST",
                     data: data,
-                    url: `${API_URL}/api/users/login/`,
+                    url: `${api_url}/api/users/login/`,
                     headers: {
                         "Content-Type": "multipart/form-data"
                     }
