@@ -71,7 +71,7 @@ class NewDose extends Component<Props, IState> {
                 const data: FormData = new FormData();
 
                 for (const [key, value] of Object.entries(this.state)) {
-                    if (key !== "errors") {
+                    if (key !== "errors" && key !== "orig_date") {
                         data.append(key, value.toString());
                     }
                 }
