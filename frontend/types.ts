@@ -4,6 +4,7 @@ type DrawerStackParamList = {
     Register: undefined;
     Login: undefined;
     Logout: undefined;
+    NewDose: undefined;
 };
 
 export default DrawerStackParamList;

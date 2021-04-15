@@ -9,6 +9,7 @@ import Home from "./screens/Home";
 import Register from './screens/Register';
 import Login from "./screens/Login";
 import Logout from './screens/Logout';
+import NewDose from './screens/doses/NewDose';
 
 function CustomNavigationBar({ scene }: any) {
   return (
@@ -60,6 +61,7 @@ export default function App() {
             </>
             : 
             <>
+              <Drawer.Screen name="Add Dose" component={NewDose} />
               <Drawer.Screen name="Logout">
                 {(props) => <Logout onLogout={() => getAuthed((authed: boolean) => setAuthed(authed))} {...props} />}
               </Drawer.Screen>
