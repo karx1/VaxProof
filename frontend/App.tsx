@@ -61,7 +61,9 @@ export default function App() {
             </>
             : 
             <>
-              <Drawer.Screen name="Add Dose" component={NewDose} />
+              <Drawer.Screen name="Add Dose">
+                {(props) => <NewDose token={token} {...props} />}
+              </Drawer.Screen>
               <Drawer.Screen name="Logout">
                 {(props) => <Logout onLogout={() => getAuthed((authed: boolean) => setAuthed(authed))} {...props} />}
               </Drawer.Screen>

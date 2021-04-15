@@ -5,9 +5,12 @@ import { KeyboardAvoidingView, ScrollView, View } from "react-native";
 import styles from "../../styles";
 import { Button, Text, TextInput } from "react-native-paper";
 import { isBlank } from "../../utils";
+import axios, { AxiosRequestConfig } from "axios";
+import { api_url } from "../../config.json";
 
 type Props = {
     navigation: DrawerNavigationProp<DrawerStackParamList, "NewDose">;
+    token: string;
 }
 
 interface IState {
@@ -39,6 +42,8 @@ class NewDose extends Component<Props, IState> {
     }
 
     onSubmit = () => {
+        console.log(this.props.token);
+
         const errors: { [key: string]: Array<string> } = {};
         for (const [key, value] of Object.entries(this.state)) {
             console.log(key, value);
@@ -62,6 +67,35 @@ class NewDose extends Component<Props, IState> {
 
         this.setState({ errors: errors }, () => {
             console.log(this.state.errors);
+            if (Object.keys(this.state.errors).length === 0) {
+                const data: FormData = new FormData();
+
+                for (const [key, value] of Object.entries(this.state)) {
+                    if (key !== "errors") {
+                        data.append(key, value.toString());
+                    }
+                }
+
+                //@ts-ignore
+                for (const key in data) {
+                    //@ts-ignore
+                    console.log(key, data[key]);
+                }
+
+                const config: AxiosRequestConfig = {
+                    method: "POST",
+                    data: data,
+                    url: `${api_url}/api/doses/new/`,
+                    headers: {
+                        "X-CSRFToken": this.props.token,
+                        "Content-Type": "multipart/form-data"
+                    }
+                };
+
+                axios(config).then(resp => {
+                    console.log(resp.data);
+                }).catch(err => {console.error(err)})
+            }
         })
     }
 
