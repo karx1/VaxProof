@@ -27,8 +27,10 @@ class NewDose extends Component<Props, IState> {
         this.setState({ [name]: text });
     }
 
-    changeDate = (date: Date) => {
-        this.setState({ date: date });
+    parseDate = (date: string) => {
+        const d = new Date(Date.parse(date))
+
+        this.setState({ date: d }, () => console.log(this.state.date.toUTCString()));
     }
 
     render() {
@@ -38,6 +40,7 @@ class NewDose extends Component<Props, IState> {
                     <Text style={styles.header}>Add Dose</Text>
                     <View style={styles.input}>
                         <TextInput label="Product name/Manufacturer" onChangeText={text => this.onChangeText("product", text)} mode="outlined" autoCompleteType="off" />
+                        <TextInput label="Date (MM/DD/YYYY)" onChangeText={this.parseDate} mode="outlined" autoCompleteType="off" />
                         <TextInput label="Clinic name" onChangeText={text => this.onChangeText("clinic", text)} mode="outlined" autoCompleteType="off" />
                     </View>
                 </KeyboardAvoidingView>
