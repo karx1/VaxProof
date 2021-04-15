@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Key } from "react";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import DrawerStackParamList from "../../types";
 import { KeyboardAvoidingView, ScrollView, View } from "react-native";
 import styles from "../../styles";
-import { Text, TextInput } from "react-native-paper";
+import { Button, Text, TextInput } from "react-native-paper";
+import { isBlank } from "../../utils";
 
 type Props = {
     navigation: DrawerNavigationProp<DrawerStackParamList, "NewDose">;
@@ -12,14 +13,18 @@ type Props = {
 interface IState {
     product: string;
     date: Date;
+    orig_date: string;
     clinic: string;
+    errors: { [key: string]: Array<string> };
 }
 
 class NewDose extends Component<Props, IState> {
     state = {
         product: "",
         date: new Date(),
-        clinic: ""
+        orig_date: "",
+        clinic: "",
+        errors: {}
     }
 
     onChangeText = (name: string, text: string) => {
@@ -27,10 +32,37 @@ class NewDose extends Component<Props, IState> {
         this.setState({ [name]: text });
     }
 
-    parseDate = (date: string) => {
-        const d = new Date(Date.parse(date))
+    parseDate = (text: string) => {
+        const d = new Date(Date.parse(text))
 
-        this.setState({ date: d }, () => console.log(this.state.date.toUTCString()));
+        this.setState({ date: d, orig_date: text }, () => console.log(this.state.date.toUTCString()));
+    }
+
+    onSubmit = () => {
+        const errors: { [key: string]: Array<string> } = {};
+        for (const [key, value] of Object.entries(this.state)) {
+            console.log(key, value);
+            if (key !== "orig_date" && isBlank(value.toString())) {
+                if (!(key in errors)) errors[key] = [];
+                errors[key].push("Please fill out this field.");
+            }
+        }
+
+        if (isBlank(this.state.orig_date)) {
+            if (!("date" in errors)) errors["date"] = [];
+            errors["date"].push("Please fill out this field.");
+        }
+
+        const regex = /\d{2}\/\d{2}\/\d{4}/;
+
+        if (!regex.test(this.state.orig_date) || !(this.state.date instanceof Date && !isNaN(this.state.date.valueOf()))) {
+            if (!("date" in errors)) errors["date"] = [];
+            errors["date"].push("Please enter a valid date. Dates should be in MM/DD/YYYY format.");
+        }
+
+        this.setState({ errors: errors }, () => {
+            console.log(this.state.errors);
+        })
     }
 
     render() {
@@ -39,9 +71,20 @@ class NewDose extends Component<Props, IState> {
                 <KeyboardAvoidingView style={styles.container}>
                     <Text style={styles.header}>Add Dose</Text>
                     <View style={styles.input}>
-                        <TextInput label="Product name/Manufacturer" onChangeText={text => this.onChangeText("product", text)} mode="outlined" autoCompleteType="off" />
-                        <TextInput label="Date (MM/DD/YYYY)" onChangeText={this.parseDate} mode="outlined" autoCompleteType="off" />
-                        <TextInput label="Clinic name" onChangeText={text => this.onChangeText("clinic", text)} mode="outlined" autoCompleteType="off" />
+                        <TextInput label="Product name/Manufacturer" onChangeText={text => this.onChangeText("product", text)} mode="outlined" autoCompleteType="off" error={"product" in this.state.errors} />
+                        {/* 
+                        //@ts-ignore */}
+                        {"product" in this.state.errors && this.state.errors["product"].map((errorMessage: string, index: Key) => <Text key={index} style={styles.error}>{errorMessage}</Text>)}
+                        <TextInput label="Date (MM/DD/YYYY)" onChangeText={this.parseDate} mode="outlined" autoCompleteType="off" error={"date" in this.state.errors} />
+                        {/* 
+                        //@ts-ignore */}
+                        {"date" in this.state.errors && this.state.errors["date"].map((errorMessage: string, index: Key) => <Text key={index} style={styles.error}>{errorMessage}</Text>)}
+                        <TextInput label="Clinic name" onChangeText={text => this.onChangeText("clinic", text)} mode="outlined" autoCompleteType="off" error={"clinic" in this.state.errors} />
+                        {/* 
+                        //@ts-ignore */}
+                        {"clinic" in this.state.errors && this.state.errors["clinic"].map((errorMessage: string, index: Key) => <Text key={index} style={styles.error}>{errorMessage}</Text>)}
+
+                        <Button mode="contained" icon="card-plus" style={styles.submit} onPress={this.onSubmit} >Log In</Button>
                     </View>
                 </KeyboardAvoidingView>
             </ScrollView>
