@@ -29,3 +29,10 @@ def new_dose(request):
         resp = serializer.errors
         resp["status"] = 400
         return Response(resp)
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def my_doses(request): 
+    doses = Dose.objects.filter(user=request.user)
+    serializer = DoseSerializer(doses, many=True)
+    return Response(serializer.data)
