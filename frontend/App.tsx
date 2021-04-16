@@ -9,7 +9,7 @@ import Home from "./screens/Home";
 import Register from './screens/Register';
 import Login from "./screens/Login";
 import Logout from './screens/Logout';
-import NewDose from './screens/doses/NewDose';
+import NewDose from './screens/NewDose';
 
 function CustomNavigationBar({ scene }: any) {
   return (

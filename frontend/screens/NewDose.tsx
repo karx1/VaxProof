@@ -1,12 +1,12 @@
 import React, { Component, Key } from "react";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
-import DrawerStackParamList from "../../types";
+import DrawerStackParamList from "../types";
 import { KeyboardAvoidingView, ScrollView, View } from "react-native";
-import styles from "../../styles";
+import styles from "../styles";
 import { Button, Text, TextInput } from "react-native-paper";
-import { assert, isBlank } from "../../utils";
+import { assert, isBlank } from "../utils";
 import axios, { AxiosRequestConfig } from "axios";
-import { api_url } from "../../config.json";
+import { api_url } from "../config.json";
 
 type Props = {
     navigation: DrawerNavigationProp<DrawerStackParamList, "NewDose">;
