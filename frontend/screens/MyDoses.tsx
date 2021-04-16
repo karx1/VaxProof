@@ -1,11 +1,11 @@
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { Key, useEffect } from "react";
 import { View } from "react-native";
-import { Text } from "react-native-paper";
+import { Text, Card } from "react-native-paper";
 import styles from "../styles";
 import DrawerStackParamList from "../types";
-import {api_url} from "../config.json";
+import { api_url } from "../config.json";
 
 type Props = {
     navigation: DrawerNavigationProp<DrawerStackParamList, "MyDoses">;
@@ -27,10 +27,19 @@ function MyDoses({ navigation }: Props) {
     }, []);
 
     return (
-        <View style={styles.container}>
-            <Text>Coming soon!</Text>
-            {doses.map((dose: Dose) => {
-                return <Text>{dose.date}</Text>
+        <View style={styles.wrapper}>
+            <Text style={styles.header}>My Doses</Text>
+            {doses.map((dose: Dose, index: Key) => {
+                const d = new Date(Date.parse(dose.date));
+
+                return (
+                    <Card key={index}>
+                        <Card.Title title={`Dose #${Number(index) + 1}`} subtitle={d.toDateString()} />
+                        <Card.Content>
+                            <Text>Test</Text>
+                        </Card.Content>
+                    </Card>
+                )
             })}
         </View>
     )
