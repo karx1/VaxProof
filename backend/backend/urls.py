@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/csrf-token/', views.get_csrf_token, name="get_csrf_token"),
     path('api/authed/', views.is_authed, name="is_authed"),
-    path('api/users/', include('users.urls'))
+    path('api/users/', include('users.urls')),
+    path('api/doses/', include('doses.urls'))
 ]

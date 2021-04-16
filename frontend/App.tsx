@@ -9,6 +9,7 @@ import Home from "./screens/Home";
 import Register from './screens/Register';
 import Login from "./screens/Login";
 import Logout from './screens/Logout';
+import NewDose from './screens/doses/NewDose';
 
 function CustomNavigationBar({ scene }: any) {
   return (
@@ -24,6 +25,11 @@ async function getAuthed(callback: Function) {
   callback(resp.data);
 }
 
+async function getToken(callback: Function) {
+  const resp = await axios.get(`${api_url}/api/csrf-token`);
+  callback(resp.data);
+}
+
 const Drawer = createDrawerNavigator();
 
 export default function App() {
@@ -31,13 +37,22 @@ export default function App() {
   const [authed, setAuthed] = useState(false);
 
   useEffect(() => {
-    axios.get(`${api_url}/api/csrf-token?format=json`).then(resp => {
-      setToken(resp.data);
+    getToken((token: string) => {
+      setToken(token);
+      getAuthed((authed: boolean) => {
+        setAuthed(authed);
+      })
+    })
+  }, []);
+
+  const logActionCallback = () => {
+    getToken((token: string) => {
+      setToken(token);
       getAuthed((authed: boolean) => {
         setAuthed(authed);
       });
     });
-  }, []);
+  }
 
   return (
     <PaperProvider>
@@ -52,7 +67,7 @@ export default function App() {
           {!authed ?
             <>
               <Drawer.Screen name="Login">
-                {(props) => <Login token={token} onLogin={() => getAuthed((authed: boolean) => setAuthed(authed))} {...props} />}
+                {(props) => <Login token={token} onLogin={logActionCallback} {...props} />}
               </Drawer.Screen>
               <Drawer.Screen name="Register">
                 {(props) => <Register token={token} {...props} />}
@@ -60,8 +75,11 @@ export default function App() {
             </>
             : 
             <>
+              <Drawer.Screen name="Add Dose">
+                {(props) => <NewDose token={token} {...props} />}
+              </Drawer.Screen>
               <Drawer.Screen name="Logout">
-                {(props) => <Logout onLogout={() => getAuthed((authed: boolean) => setAuthed(authed))} {...props} />}
+                {(props) => <Logout onLogout={logActionCallback} {...props} />}
               </Drawer.Screen>
             </>}
         </Drawer.Navigator>

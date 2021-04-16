@@ -8,6 +8,9 @@ class Dose(models.Model):
         get_user_model(),
         on_delete=models.CASCADE
     )
-    product_name = models.CharField(max_length=120)
+    product = models.CharField(max_length=120)
     date = models.DateField()
-    clinic_name = models.CharField(max_length=120)
+    clinic = models.CharField(max_length=120)
+
+    def __str__(self) -> str:
+        return f"{self.user.username}: {self.product} from {self.clinic} on {self.date}"
