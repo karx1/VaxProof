@@ -11,3 +11,6 @@ class Dose(models.Model):
     product = models.CharField(max_length=120)
     date = models.DateField()
     clinic = models.CharField(max_length=120)
+
+    def __str__(self) -> str:
+        return f"{self.user.username}: {self.product} from {self.clinic} on {self.date}"
