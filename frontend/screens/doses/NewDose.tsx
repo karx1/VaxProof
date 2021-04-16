@@ -125,7 +125,7 @@ class NewDose extends Component<Props, IState> {
                         {/* 
                         //@ts-ignore */}
                         {"product" in this.state.errors && this.state.errors["product"].map((errorMessage: string, index: Key) => <Text key={index} style={styles.error}>{errorMessage}</Text>)}
-                        <TextInput label="Date (MM/DD/YYYY)" onChangeText={this.parseDate} mode="outlined" autoCompleteType="off" error={"date" in this.state.errors} />
+                        <TextInput label="Date (MM/DD/YYYY)" onChangeText={this.parseDate} mode="outlined" autoCompleteType="off" keyboardType="phone-pad" error={"date" in this.state.errors} />
                         {/* 
                         //@ts-ignore */}
                         {"date" in this.state.errors && this.state.errors["date"].map((errorMessage: string, index: Key) => <Text key={index} style={styles.error}>{errorMessage}</Text>)}
@@ -134,7 +134,7 @@ class NewDose extends Component<Props, IState> {
                         //@ts-ignore */}
                         {"clinic" in this.state.errors && this.state.errors["clinic"].map((errorMessage: string, index: Key) => <Text key={index} style={styles.error}>{errorMessage}</Text>)}
 
-                        <Button mode="contained" icon="card-plus" style={styles.submit} onPress={this.onSubmit} >Log In</Button>
+                        <Button mode="contained" icon="card-plus" style={styles.submit} onPress={this.onSubmit}>Add Dose</Button>
                     </View>
                 </KeyboardAvoidingView>
             </ScrollView>
