@@ -4,7 +4,7 @@ import DrawerStackParamList from "../../types";
 import { KeyboardAvoidingView, ScrollView, View } from "react-native";
 import styles from "../../styles";
 import { Button, Text, TextInput } from "react-native-paper";
-import { isBlank } from "../../utils";
+import { assert, isBlank } from "../../utils";
 import axios, { AxiosRequestConfig } from "axios";
 import { api_url } from "../../config.json";
 
@@ -93,7 +93,23 @@ class NewDose extends Component<Props, IState> {
                 };
 
                 axios(config).then(resp => {
-                    console.log(resp.data);
+                    const { data } = resp;
+
+                    if (data.status === 400) {
+                        const errors = {...data};
+                        delete errors.status;
+
+                        this.setState({ errors: errors }, () => console.log(this.state.errors));
+                    } else {
+                        const { detail, status } = data;
+
+                        assert(status === 201, "Status was not 201!");
+
+                        console.log(detail);
+
+                        this.props.navigation.navigate("Home");
+                    }
+
                 }).catch(err => {console.error(err)})
             }
         })
