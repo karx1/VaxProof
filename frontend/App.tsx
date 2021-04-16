@@ -10,6 +10,7 @@ import Register from './screens/Register';
 import Login from "./screens/Login";
 import Logout from './screens/Logout';
 import NewDose from './screens/NewDose';
+import MyDoses from "./screens/MyDoses";
 
 function CustomNavigationBar({ scene }: any) {
   return (
@@ -75,6 +76,7 @@ export default function App() {
             </>
             : 
             <>
+              <Drawer.Screen name="My Doses" component={MyDoses} />
               <Drawer.Screen name="Add Dose">
                 {(props) => <NewDose token={token} {...props} />}
               </Drawer.Screen>
