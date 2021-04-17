@@ -6,6 +6,7 @@ import { Text, Card } from "react-native-paper";
 import styles from "../styles";
 import DrawerStackParamList from "../types";
 import { api_url } from "../config.json";
+import { Break } from "../utils";
 
 type Props = {
     navigation: DrawerNavigationProp<DrawerStackParamList, "MyDoses">;
@@ -33,12 +34,15 @@ function MyDoses({ navigation }: Props) {
                 const d = new Date(Date.parse(dose.date));
 
                 return (
-                    <Card key={index}>
-                        <Card.Title title={`Dose #${Number(index) + 1}`} subtitle={d.toDateString()} />
-                        <Card.Content>
-                            <Text>Test</Text>
-                        </Card.Content>
-                    </Card>
+                    <View key={index}>
+                        <Card>
+                            <Card.Title title={`Dose #${Number(index) + 1}`} subtitle={d.toDateString()} />
+                            <Card.Content>
+                                <Text>Test</Text>
+                            </Card.Content>
+                        </Card>
+                        <Break />
+                    </View>
                 )
             })}
         </View>

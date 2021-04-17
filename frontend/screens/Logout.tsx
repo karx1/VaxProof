@@ -6,6 +6,7 @@ import styles from "../styles";
 import { Text, Button } from "react-native-paper";
 import axios from "axios";
 import { api_url } from "../config.json";
+import { Break } from "../utils";
 
 type LoginScreenNavigationProp = DrawerNavigationProp<DrawerStackParamList, "Logout">;
 
@@ -27,7 +28,7 @@ function Logout(props: Props) {
         <View style={styles.container}>
             <Text style={styles.header}>Log out</Text>
             <Text>Are you sure you want to log out?</Text>
-            <Text />
+            <Break />
             <Button icon="logout-variant" mode="contained" onPress={handleClick} >Log Out</Button>
         </View>
     )

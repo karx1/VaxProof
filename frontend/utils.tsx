@@ -1,3 +1,6 @@
+import React from "react";
+import { Text } from "react-native-paper";
+
 function isBlank(str: string) {
     return (!str || /^\s*$/.test(str));
 }
@@ -12,4 +15,8 @@ function assert(condition: boolean, message: string) {
     }
 }
 
-export { isBlank, isNotBlank, assert };
+function Break() {
+    return <Text />;
+}
+
+export { isBlank, isNotBlank, assert, Break };
