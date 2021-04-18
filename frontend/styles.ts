@@ -27,6 +27,10 @@ const styles = StyleSheet.create({
     },
     error: {
       color: "red"
+    },
+    wrapper: {
+      margin: "auto",
+      padding: 20
     }
 });
 
