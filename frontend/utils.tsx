@@ -19,4 +19,12 @@ function Break() {
     return <Text />;
 }
 
-export { isBlank, isNotBlank, assert, Break };
+type BoldProps = {
+    children: any;
+}
+
+function Bold({ children }: BoldProps) {
+    return <Text style={{fontWeight: "bold"}} >{children}</Text>
+}
+
+export { isBlank, isNotBlank, assert, Break, Bold };
